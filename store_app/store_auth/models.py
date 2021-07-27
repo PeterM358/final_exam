@@ -53,4 +53,4 @@ class StoreUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
 
-    object = StoreUserManager
+    object = StoreUserManager()

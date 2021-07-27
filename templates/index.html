@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>MyStore</title>
 </head>
 <body>
 <h1>My first website</h1>
@@ -25,6 +25,13 @@
     {% csrf_token %}
     {{ form }}
     <button>Sign in</button>
+</form>
+
+
+<form action="{% url 'sign out' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>Sign out</button>
 </form>
 
 

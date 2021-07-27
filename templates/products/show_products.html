@@ -13,6 +13,7 @@
         <h3>{{ product_title }} hardcoded in Class Based View list products</h3>
         {% for product in products %}
             <li>
+                <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
                 {{ product.name }}:  {{ product.price }}$
                 <a href="{% url 'update product' product.id %}">Update</a>
                 <a href="{% url 'delete product' product.id %}">Delete</a>
