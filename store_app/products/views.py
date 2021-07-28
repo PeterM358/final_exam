@@ -1,9 +1,10 @@
 from django import forms
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from store_app.common.form_mixin import BootStrapFormViewMixin
+from store_app.common.mixins import BootStrapFormViewMixin, AnyGroupRequiredMixin
 from store_app.products.models import Product
 
 
@@ -22,7 +23,7 @@ class IndexView(TemplateView):
 #         fields = '__all__'
 
 
-class CreateProductView(BootStrapFormViewMixin, CreateView):
+class CreateProductView(AnyGroupRequiredMixin, BootStrapFormViewMixin, CreateView):
     model = Product
     template_name = 'products/create_products.html'
     fields = '__all__'
@@ -34,7 +35,7 @@ class UpdateProductView(UpdateView):
     model = Product
     template_name = 'products/update_products.html'
     fields = '__all__'
-    success_url = reverse_lazy('show products',)
+    success_url = reverse_lazy('show products', )
 
 
 class DeleteProductView(DeleteView):

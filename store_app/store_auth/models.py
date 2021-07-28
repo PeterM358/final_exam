@@ -46,6 +46,10 @@ class StoreUser(AbstractBaseUser, PermissionsMixin):
         blank=False,
     )
 
+    is_staff = models.BooleanField(
+        default=False,
+    )
+
     email = models.EmailField(
         max_length=50,
         blank=False,

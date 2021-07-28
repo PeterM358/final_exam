@@ -130,6 +130,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_URL = 'media_files/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_files')
 
 LOGIN_URL = reverse_lazy('sign in')
