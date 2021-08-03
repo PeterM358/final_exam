@@ -1,63 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MyStore</title>
-</head>
-<body>
-<h1>My first website</h1>
+{% include 'shared/base.html' %}
 
 
-<h2> sing in sign out test</h2>
-
-
-<form action="{% url 'sign up' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Sign up</button>
-</form>
-
-
-<form action="{% url 'sign in' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Sign in</button>
-</form>
-
-
-<form action="{% url 'sign out' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Sign out</button>
-</form>
-
-
-
-{% if user.is_authenticated %}
-    <h1>{{ user.username }} signed iin</h1>
-{% else %}
-    <h1>No one logged in</h1>
-{% endif %}
-
-
-{#{% if user.is_authenticated %}#}
-{#    <h6>Logged in succsesfully</h6>#}
-{##}
-{#{% else %}#}
-{#    <h6> didnt logged </h6>#}
-{#{% endif %}#}
-
-<h3>{{ title }}</h3>
-
-
+{% block content %}
+<h1>Wellcome {{ request.user }}</h1>
 <li>
     <a href="{% url 'show products' %}">Go to products</a>
 </li>
-<li>
-    <a href="{% url 'create product' %}">Create product</a>
-</li>
+
+{#{% if user.is_superuser or user.is_staff %}#}
+    <li>
+        <a href="{% url 'create product' %}">Create product</a>
+    </li>
+
+        <li>
+        <a href="{% url 'edit users' %}">Edit users</a>
+    </li>
+{#{% endif %}#}
 </body>
 </html>
+{% endblock %}

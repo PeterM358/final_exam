@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Zentimo - Home</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body class="home">
+<header class="header style7">
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <div class="header-message">
+                    Welcome to our online store!
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <ul class="header-user-links">
+                    {% if user.is_authenticated %}
+                        <li>
+                        <a href="{% url 'sign out' %}">Sign out</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'sign in' %}">Sign in</a>
+                        <a href="{% url 'sign up' %}">Sign up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+

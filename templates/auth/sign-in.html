@@ -1,5 +1,11 @@
-<form action="{% url 'sign in' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Sign in</button>
-</form>
+{% include 'shared/base.html' %}
+
+{% block content %}
+    <body>
+    <form class="w-50 m-auto" action="{% url 'sign in' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>Sign in</button>
+    </form>
+    </body>
+{% endblock %}

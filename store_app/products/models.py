@@ -2,11 +2,14 @@ from django.db import models
 
 
 class Product(models.Model):
+
+    def __str__(self):
+        return self.name
+
     name = models.CharField(
         max_length=30,
     )
     description = models.TextField()
-    quantity = models.PositiveIntegerField()
     price = models.IntegerField()
     product_image = models.ImageField(
         upload_to='product_images',
@@ -14,5 +17,17 @@ class Product(models.Model):
         null=True,
     )
 
+    CATEGORIES = (
+        (1, 'Electronics'),
+        (2, 'Furniture'),
+        (3, 'Kids staff')
+    )
 
-## TODO class Like
+    category = models.BooleanField(
+        choices=CATEGORIES,
+
+    )
+
+class Order(models.Model):
+    pass
+

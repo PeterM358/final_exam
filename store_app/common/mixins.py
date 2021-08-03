@@ -1,3 +1,4 @@
+from django.contrib.auth.models import PermissionsMixin
 from django.core.exceptions import PermissionDenied
 
 
@@ -34,3 +35,4 @@ class AnyGroupRequiredMixin:
             return PermissionDenied
 
         return super().dispatch(request, *args, **kwargs)
+

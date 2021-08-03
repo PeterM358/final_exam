@@ -6,28 +6,28 @@ from django.db import models
 
 
 class StoreUserManager(BaseUserManager):
-    def _create_user(self, username, email, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
         """
-        if not username:
+        if not email:
             raise ValueError('The given username must be set')
         email = self.normalize_email(email)
         # Lookup the real model class from the global app registry so this
         # manager method can be used in migrations. This is fine because
         # managers are by definition working on the real model.
 
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, email=None, password=None, **extra_fields):
+    def create_user(self, email=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self, username, email=None, password=None, **extra_fields):
+    def create_superuser(self, email=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -36,11 +36,11 @@ class StoreUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
 
 class StoreUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(
+    email = models.CharField(
         unique=True,
         max_length=25,
         blank=False,
@@ -50,11 +50,28 @@ class StoreUser(AbstractBaseUser, PermissionsMixin):
         default=False,
     )
 
-    email = models.EmailField(
-        max_length=50,
-        blank=False,
-    )
+    # USER_TYPE_CHOICES = (
+    #     (1, 'publisher'),
+    #     (2, 'customer'),
+    # )
+    #
+    # user_type = models.BooleanField(choices=USER_TYPE_CHOICES)
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
 
     object = StoreUserManager()
+
+
+class Profile(models.Model):
+    profile_image = models.ImageField(
+        upload_to='profile_images',
+        blank=True,  # because is automatically created after save (signal)
+    )
+
+    user = models.OneToOneField(
+        StoreUser,
+        on_delete=models.CASCADE,
+        primary_key=True,
+
+    )  #TODO fix profile
+
