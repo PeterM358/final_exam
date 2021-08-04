@@ -1,0 +1,10 @@
+{% include 'shared/base.html' %}
+
+<body>
+<form action="{% url 'update user' user.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button>Update</button>
+</form>
+</body>
+</html>

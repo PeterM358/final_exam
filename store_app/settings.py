@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     'store_app.store_auth',
-    'store_app.products', # TODO check error bot
+    'store_app.products',  # TODO check error bot
+    'store_app.profiles',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,12 @@
+{% include 'shared/base.html' %}
+
+{% block content %}
+    <body>
+    {% for user in users %}
+        <li>
+            {{ user.email }}
+                <a href="{% url 'update user' user.id %}">Update</a>
+        </li>
+        </body>
+    {% endfor %}
+{% endblock %}

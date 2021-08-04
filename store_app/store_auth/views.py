@@ -34,7 +34,7 @@ class SignOutView(LogoutView):
 
 
 class ListUsersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    template_name = 'auth/update-user.html'
+    template_name = 'auth/list_users.html'
     model = StoreUser
     context_object_name = 'users'
 
@@ -43,4 +43,17 @@ class ListUsersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         return StoreUser.object.all()
+
+
+class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = UserModel
+    template_name = 'auth/update_user.html'
+    fields = ('email', 'is_staff')
+    success_url = reverse_lazy('list users', )
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+
 
