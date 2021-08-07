@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Products</title>
-</head>
+{% include 'shared/base.html' %}
+
 <body>
-{#{% if user.is_superuser %}#}
     <form action="{% url 'create product' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     <button>Create</button>
         </form>
-{#    {% else %}#}
-{#    You dont have permissions#}
-{#{% endif %}#}
-
 </body>
 </html>

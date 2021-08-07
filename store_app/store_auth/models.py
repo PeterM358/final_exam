@@ -61,17 +61,3 @@ class StoreUser(AbstractBaseUser, PermissionsMixin):
 
     object = StoreUserManager()
 
-
-class Profile(models.Model):
-    profile_image = models.ImageField(
-        upload_to='profile_images',
-        blank=True,  # because is automatically created after save (signal)
-    )
-
-    user = models.OneToOneField(
-        StoreUser,
-        on_delete=models.CASCADE,
-        primary_key=True,
-
-    )  #TODO fix profile
-

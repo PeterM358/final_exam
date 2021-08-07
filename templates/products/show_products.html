@@ -2,19 +2,27 @@
 
 {% block content %}
 <body>
-    <h1>Products</h1>
+    <br>
+    {% if user.is_superuser or user.is_staff %}
+     <a href="{% url 'create product' %}"><button>Add product</button></a>
+    <br>
+    <br>
+    {% endif %}
+    <h1>Products:</h1>
     {% if products %}
-        <h3>{{ product_title }} hardcoded in Class Based View list products</h3>
         {% for product in products %}
             <li>
+                {% if product.product_image %}
                 <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
+                {% endif %}
                 {{ product.name }}:  {{ product.price }}$
                 {% if user.is_superuser or user.is_staff %}
                     <a href="{% url 'update product' product.id %}">Update</a>
                     <a href="{% url 'delete product' product.id %}">Delete</a>
-                    <a href="{% url 'product details' product.id%}">Details</a>
+                    <a href="{% url 'product details' product.id %}">Details</a>
                 {% else %}
-                    <a href="{% url 'product details' product.id%}">Details</a>
+                    <a href="{% url 'product details' product.id %}"><button>Details</button></a>
+                    <a href="{% url 'buy product' product.id %}"><button>Buy</button></a>
             {% endif %}
             </li>
         {% endfor %}

@@ -1,21 +1,22 @@
 {% include 'shared/base.html' %}
-
+{% load show_products_to_users %}
 
 {% block content %}
-<h1>Wellcome {{ request.user }}</h1>
-<li>
-    <a href="{% url 'show products' %}">Go to products</a>
-</li>
-
-{#{% if user.is_superuser or user.is_staff %}#}
-    <li>
-        <a href="{% url 'create product' %}">Create product</a>
-    </li>
-
+    {% if user.is_superuser or user.is_staff%}
         <li>
-        <a href="{% url 'list users' %}">Users list</a>
-    </li>
-{#{% endif %}#}
-</body>
-</html>
+            <a href="{% url 'show products' %}">Go to products</a>
+        </li>
+        <li>
+            <a href="{% url 'list users' %}">Users list</a>
+        </li>
+        <li>
+            <a href="{% url 'create product' %}">Add product</a>
+        </li>
+    {% endif %}
+    <br>
+    {% show_products_to_user %}
+
+
+    </body>
+    </html>
 {% endblock %}

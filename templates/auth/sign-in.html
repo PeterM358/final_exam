@@ -2,6 +2,9 @@
 
 {% block content %}
     <body>
+    {% if not user.is_authenticated %}
+        <h4>Sign in or sign up for this action</h4>
+    {% endif %}
     <form class="w-50 m-auto" action="{% url 'sign in' %}" method="post">
         {% csrf_token %}
         {{ form }}

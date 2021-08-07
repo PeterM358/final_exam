@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>Zentimo - Home</title>
+    <title>Store</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,15 +20,17 @@
         <div class="container">
             <div class="top-bar-left">
                 <div class="header-message">
-                    Welcome to our online store!
+                    <a href="{% url 'index' %}">Welcome to our online store!</a>
                 </div>
             </div>
             <div class="top-bar-right">
                 <ul class="header-user-links">
                     {% if user.is_authenticated %}
-                        <li>
-                        <a href="{% url 'sign out' %}">Sign out</a>
-                    </li>
+                        <ul>
+                            <a href="{% url 'show profile' user.id %}">{{ user.email }}</a>}
+                            <a href="{% url 'sign out' %}">Sign out</a>
+                        </ul>
+
                     {% else %}
                     <li>
                         <a href="{% url 'sign in' %}">Sign in</a>

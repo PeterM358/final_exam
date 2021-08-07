@@ -3,10 +3,12 @@
 {% block content %}
     <body>
     {% for user in users %}
-        <li>
-            {{ user.email }}
-                <a href="{% url 'update user' user.id %}">Update</a>
-        </li>
+            <ul>
+                <h4>{{ user.id }}: {{ user.email }} // Is staff: {{ user.is_staff }}
+                    <u><a href="{% url 'update user' user.id %}"><button>User update</button></a></u></h4>
+                <h4>First name: {{ user.profile.first_name }}
+                    <u><a href="{% url 'update profile' user.id %}"><button>Profile update</button></a></u></h4>
+            </ul>
         </body>
     {% endfor %}
 {% endblock %}

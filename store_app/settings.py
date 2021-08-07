@@ -42,8 +42,9 @@ INSTALLED_APPS = [
 
 
     'store_app.store_auth',
-    'store_app.products',  # TODO check error bot
+    'store_app.products',
     'store_app.profiles',
+    'store_app.products.templatetags'
 ]
 
 MIDDLEWARE = [

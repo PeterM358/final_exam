@@ -1,0 +1,33 @@
+{% include 'shared/base.html' %}
+
+{% block content %}
+    <body>
+    {% if request.user.is_staff %}
+        <h4>Staff member</h4>
+    {% endif %}
+    <h1>{{ Profile }}</h1>
+    <ul>
+        <h4>Name: {{ profile.first_name }} </h4>
+        <h4>Last name: {{ profile.last_name }}</h4>
+        <h4>Age: {{ profile.age }}</h4>
+    </ul>
+    {% if profile.profile_image %}
+        <img class="card-img-top" src="{{ profile.profile_image.url }}" alt="Card image cap">
+    {% endif %}
+    <h5><u><a href="{% url 'update profile' user.id %}"><button>Update profile</button></a></u></h5>
+
+
+    {% if cart.products %}
+        <h4>Bought products: </h4>
+        {% for product in cart.products.iterator %}
+            <h3>{{ product.name }}: {{ product.description }}</h3>
+            <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap"
+        {% endfor %}
+    {% else %}
+        <h4>Go to products</h4>
+        <h5><u><a href="{% url 'custom show products' %}">
+            <button>Products</button>
+        </a></u></h5>
+    {% endif %}
+    </body>
+{% endblock %}

@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView
 
+from store_app.profiles.models import Profile
 from store_app.store_auth.froms import SignUpForm, SignInForm
 from store_app.store_auth.models import StoreUser
 
@@ -41,18 +42,23 @@ class ListUsersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
-    def get_queryset(self):
-        return StoreUser.object.all()
+    # def get_queryset(self):
+    #     return StoreUser.object.all()
 
 
 class UpdateUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserModel
     template_name = 'auth/update_user.html'
-    fields = ('email', 'is_staff')
-    success_url = reverse_lazy('list users', )
+    fields = ('is_staff',)
+    success_url = reverse_lazy('list users')
+    # slug_field = 'url'
 
     def test_func(self):
         return self.request.user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateUserView, self).get_context_data(**kwargs)
+        return context
 
 
 

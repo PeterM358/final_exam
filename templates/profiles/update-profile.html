@@ -1,0 +1,11 @@
+{% include 'shared/base.html' %}
+
+{% block content %}
+    <h1>Profile name: {{ profile.first_name }}</h1>
+    {{ profile.first_name }}
+    <form action="{% url 'update profile' profile.user.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button>Update</button>
+</form>
+{% endblock %}

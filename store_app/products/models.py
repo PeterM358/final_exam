@@ -9,7 +9,8 @@ class Product(models.Model):
     name = models.CharField(
         max_length=30,
     )
-    description = models.TextField()
+    description = models.TextField(
+    )
     price = models.IntegerField()
     product_image = models.ImageField(
         upload_to='product_images',
@@ -27,7 +28,4 @@ class Product(models.Model):
         choices=CATEGORIES,
 
     )
-
-class Order(models.Model):
-    pass
 
