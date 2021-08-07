@@ -1,13 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView
-
-from store_app.profiles.models import Profile
 from store_app.store_auth.froms import SignUpForm, SignInForm
 from store_app.store_auth.models import StoreUser
 

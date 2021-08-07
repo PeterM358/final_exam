@@ -70,5 +70,6 @@ def buy_product(request, pk):
     product = Product.objects.get(pk=pk)
     cart = Cart.objects.get(pk=request.user.id)
     cart.products.add(product)
+    cart.cash -= product.price
     cart.save()
     return render(request, 'profiles/show-profile.html', {'cart': cart})

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import PositiveIntegerField
 
 from store_app.products.models import Product
 from store_app.store_auth.models import StoreUser
@@ -51,6 +52,12 @@ class Cart(models.Model):
         blank=True,
         on_delete=models.CASCADE,
     )
+
+    cash = models.IntegerField(
+        PositiveIntegerField,
+    )
+
+
 
 
 

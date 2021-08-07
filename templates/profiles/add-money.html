@@ -1,0 +1,9 @@
+{% include 'shared/base.html' %}
+
+{% block content %}
+<form action="{% url 'add cash' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>Add</button>
+</form>
+{% endblock %}
