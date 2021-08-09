@@ -10,6 +10,7 @@ class Product(models.Model):
         max_length=30,
     )
     description = models.TextField(
+        max_length=200,
     )
     price = models.IntegerField()
     product_image = models.ImageField(

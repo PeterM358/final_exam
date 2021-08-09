@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -69,7 +70,9 @@ def buy_product(request, pk):
     # getting product and user cart
     product = Product.objects.get(pk=pk)
     cart = Cart.objects.get(pk=request.user.id)
-    cart.products.add(product)
-    cart.cash -= product.price
-    cart.save()
-    return render(request, 'profiles/show-profile.html', {'cart': cart})
+    if cart.cash - product.price > 0:
+        cart.cash -= product.price
+        cart.products.add(product)
+        cart.save()
+        return render(request, 'profiles/show-profile.html', {'cart': cart})
+    return HttpResponse('You dont have enough money')

@@ -11,7 +11,9 @@
     <h1>Products:</h1>
     {% if products %}
         {% for product in products %}
-            <li>
+            <span>
+            <ul>
+                <li>
                 {% if product.product_image %}
                 <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
                 {% endif %}
@@ -24,7 +26,9 @@
                     <a href="{% url 'product details' product.id %}"><button>Details</button></a>
                     <a href="{% url 'buy product' product.id %}"><button>Buy</button></a>
             {% endif %}
-            </li>
+                </li>
+            </ul>
+            </span>
         {% endfor %}
     {% endif %}
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
@@ -11,9 +11,15 @@ UserModel = get_user_model()
 
 class SignUpView(CreateView):
     template_name = 'auth/sign-up.html'
-    model = UserModel
+    # model = UserModel
     form_class = SignUpForm
-    success_url = reverse_lazy('sign in')
+    success_url = reverse_lazy('index')
+
+    # autologin user
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        login(self.request, self.object)
+        return result
 
 
 class SignInView(LoginView):

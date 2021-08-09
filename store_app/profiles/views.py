@@ -1,9 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
-
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView
-
 from store_app.profiles.forms import UpdateProfileForm, AddCashForm
 from store_app.profiles.models import Profile, Cart
 
@@ -26,12 +24,13 @@ class UpdateProfileView(UpdateView):
     model = Profile
     template_name = 'profiles/update-profile.html'
     form_class = UpdateProfileForm
+
     # success_url = reverse_lazy('show profile')
 
-    # giving id to detailview THIS WORKsS
     def get_success_url(self):
-        return redirect('show profile')
-    # kwargs={'pk': self.request.user.id}
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            return reverse('list users')
+        return reverse('show profile', kwargs={'pk': self.request.user.id})
 
 
 def add_cash(request):
@@ -40,8 +39,10 @@ def add_cash(request):
         form = AddCashForm(request.POST)
         if form.is_valid():
             profile = Profile.objects.get(pk=request.user.id)
-            amount = form.cleaned_data['amount']
-            cart.cash += amount
+            cash = form.cleaned_data['cash']
+            if not cart.cash:
+                cart.cash = 0
+            cart.cash += cash
             cart.save()
             profile.save()
             return redirect('index')

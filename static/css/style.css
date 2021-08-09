@@ -10879,3 +10879,8 @@ a:hover, a:focus, a:active,
 		min-width: 45%;
 	}
 }
+
+#id_description {
+    width: 300px;
+    height: 200px;
+}

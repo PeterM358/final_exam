@@ -1,7 +1,6 @@
 from django import forms
-from django.db.models import PositiveIntegerField
 
-from store_app.profiles.models import Profile
+from store_app.profiles.models import Profile, Cart
 
 
 class ProfileForm(forms.ModelForm):
@@ -16,13 +15,8 @@ class UpdateProfileForm(forms.ModelForm):
         exclude = ('url', 'user', )
 
 
-class AddCashForm(forms.Form):
-    amount = forms.IntegerField(
-        required=False,
-        label='Cash amount',
-        widget=forms.NumberInput(
-            attrs={
-                'placeholder': 'Add money here'
-            }
-        )
-    )
+class AddCashForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ('cash', )
+

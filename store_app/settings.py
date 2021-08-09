@@ -40,11 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     'store_app.store_auth',
     'store_app.products',
     'store_app.profiles',
-    'store_app.products.templatetags'
+    'store_app.products.templatetags',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +81,26 @@ WSGI_APPLICATION = 'store_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
+
+# fix database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'store_app_db',
+        'USER': 'postgres',
+        'PASSWORD': 'asdf',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -100,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     # },
-    # {
+    # {ƒ
     #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     # },
     # {

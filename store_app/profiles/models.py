@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models import PositiveIntegerField
-
 from store_app.products.models import Product
 from store_app.store_auth.models import StoreUser
 
@@ -53,8 +52,12 @@ class Cart(models.Model):
         on_delete=models.CASCADE,
     )
 
-    cash = models.IntegerField(
-        PositiveIntegerField,
+    cash = models.PositiveIntegerField(
+        validators=[
+            MinValueValidator(1),
+        ],
+        blank=True,
+        default=0,
     )
 
 
