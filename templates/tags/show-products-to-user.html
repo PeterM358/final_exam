@@ -1,26 +1,26 @@
-{% if products %}
-    {% for product in products %}
-        <li>
-            <h1>Products:</h1>
-            {% if product.product_image %}
-                <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
-            {% endif %}
-            {{ product.name }}: {{ product.price }}$
-            {% if user.is_superuser or user.is_staff %}
-                <a href="{% url 'update product' product.id %}">Update</a>
-                <a href="{% url 'delete product' product.id %}">Delete</a>
-                <a href="{% url 'product details' product.id %}">Details</a>
-            {% else %}
-                <a href="{% url 'product details' product.id %}">
-                    <button>Details</button>
-                </a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'buy product' product.id %}">
-                    <button>Buy</button>
-                {% endif %}
-
-            </a>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endif %}
+{#{% if products %}#}
+{#    {% for product in products %}#}
+{#        <li>#}
+{#            <h1>Products:</h1>#}
+{#            {% if product.product_image %}#}
+{#                <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">#}
+{#            {% endif %}#}
+{#            {{ product.name }}: {{ product.price }}$#}
+{#            {% if user.is_superuser or user.is_staff %}#}
+{#                <a href="{% url 'update product' product.id %}">Update</a>#}
+{#                <a href="{% url 'delete product' product.id %}">Delete</a>#}
+{#                <a href="{% url 'product details' product.id %}">Details</a>#}
+{#            {% else %}#}
+{#                <a href="{% url 'product details' product.id %}">#}
+{#                    <button>Details</button>#}
+{#                </a>#}
+{#                {% if user.is_authenticated %}#}
+{#                    <a href="{% url 'buy product' product.id %}">#}
+{#                    <button>Buy</button>#}
+{#                {% endif %}#}
+{##}
+{#            </a>#}
+{#            {% endif %}#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#{% endif %}#}

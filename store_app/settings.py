@@ -61,8 +61,7 @@ ROOT_URLCONF = 'store_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,9 +95,9 @@ WSGI_APPLICATION = 'store_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'store_app_db',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'asdf',
+        'PASSWORD': 'asdf1234',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

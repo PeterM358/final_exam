@@ -1,5 +1,9 @@
-COPY requirements.txt /store_app/requirements.txt
+COPY ./store_app myproject
 
-COPY . /store_app
-EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+WORKDIR /store_app
+
+RUN pip install -r requirements.txt
+
+RUN python manage.py migrate
+
+CMD ["python","manage.py","runserver", "0.0.0.0:8000"]
