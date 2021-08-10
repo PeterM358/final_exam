@@ -27,7 +27,10 @@
                 <ul class="header-user-links">
                     {% if user.is_authenticated %}
                         <ul>
-                            <a href="{% url 'show profile' user.id %}">{{ user.email }}</a>}
+{##}
+{#                            cash: <a href="{% url 'add cash' %}">{{ request.user.cart.cash }}</a>#}
+
+                            <a href="{% url 'show profile' user.id %}">{{ user.email }}</a>
                             <a href="{% url 'sign out' %}">Sign out</a>
                         </ul>
 
