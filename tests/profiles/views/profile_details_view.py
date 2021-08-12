@@ -16,7 +16,7 @@ StoreUser = get_user_model()
 class ProfileDetailsTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = StoreUser.objects.create_user(email='koko@abv.bg', password='asdf')
+        self.user = StoreUser.object.create_user(email='koko@abv.bg', password='asdf')
 
     def test_getDetails_whenLoggedInUser_shouldGet_Details(self):
         self.client.force_login(self.user)
