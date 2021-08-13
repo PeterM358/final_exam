@@ -40,7 +40,7 @@ class StoreUserManager(BaseUserManager):
 
 
 class StoreUser(AbstractBaseUser, PermissionsMixin):
-    email = models.CharField(
+    email = models.EmailField(
         unique=True,
         max_length=25,
         blank=False,
@@ -59,5 +59,5 @@ class StoreUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-    object = StoreUserManager()
+    objects = StoreUserManager()
 

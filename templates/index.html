@@ -2,7 +2,7 @@
 {% load show_products_to_users %}
 
 {% block content %}
-    {% if user.is_superuser or user.is_staff%}
+    {% if user.is_superuser or user.is_staff %}
         <li>
             <a href="{% url 'show products' %}">Go to products</a>
         </li>
