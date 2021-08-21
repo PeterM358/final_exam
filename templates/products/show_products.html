@@ -11,9 +11,8 @@
     <h1>Products:</h1>
     {% if products %}
         {% for product in products %}
-            <span>
             <ul>
-                <li>
+                <li class="pagination">
                 {% if product.product_image %}
                 <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
                 {% endif %}
@@ -28,7 +27,6 @@
             {% endif %}
                 </li>
             </ul>
-            </span>
         {% endfor %}
     {% endif %}
 {% endblock %}

@@ -53,6 +53,7 @@ class ShowProductsView(ListView):
     model = Product
     template_name = 'products/show_products.html'
     context_object_name = 'products'
+    pagination = 4
 
     def get_context_data(self, **kwargs):
         context = super(ShowProductsView, self).get_context_data(**kwargs)

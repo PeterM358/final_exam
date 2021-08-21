@@ -1,7 +1,7 @@
 {% if products %}
+    <h1>Products:</h1>
     {% for product in products %}
-        <li>
-            <h1>Products:</h1>
+        <li class="pagination">
             {% if product.product_image %}
                 <img class="card-img-top" src="{{ product.product_image.url }}" alt="Card image cap">
             {% endif %}
